@@ -9,7 +9,6 @@ __pycache__/
 !.env.example
 
 data/processed/
-data/splits/
 
 models/
 mlruns/
