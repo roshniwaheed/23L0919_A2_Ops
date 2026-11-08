@@ -23,7 +23,13 @@ def load_image(path, label):
         filename = path_value.numpy().decode("utf-8")
 
         with Image.open(filename) as img:
-            img = ImageOps.exif_transpose(img)
+            try:
+                img = ImageOps.exif_transpose(img)
+            except (ZeroDivisionError, ValueError, OverflowError):
+                # Invalid EXIF metadata: preserve the image pixels.
+                # Orientation may remain uncorrected for this image.
+                pass
+
             img = img.convert("RGB")
             return np.asarray(img, dtype=np.uint8)
 

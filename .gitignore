@@ -19,3 +19,6 @@ mlartifacts/
 *.db
 *.sqlite3
 .DS_Store
+
+# Keras Tuner checkpoints and intermediate trial state
+reports/tuning/**/search/

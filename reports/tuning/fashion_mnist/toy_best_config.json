@@ -1,0 +1,6 @@
+{
+  "best_units": 256,
+  "best_learning_rate": 0.001,
+  "best_validation_accuracy": 0.8460000157356262,
+  "num_trials": 6
+}

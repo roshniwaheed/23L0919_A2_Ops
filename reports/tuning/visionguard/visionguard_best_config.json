@@ -1,0 +1,12 @@
+{
+  "learning_rate": 0.0001,
+  "dropout": 0.2,
+  "unfrozen_layers": 30,
+  "best_val_accuracy": 0.767123281955719,
+  "num_trials": 8,
+  "epochs_per_trial": 3,
+  "training_batches_per_epoch": 20,
+  "validation_images": 146,
+  "selection_metric": "val_accuracy",
+  "test_set_used": false
+}
