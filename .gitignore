@@ -22,3 +22,6 @@ mlartifacts/
 
 # Keras Tuner checkpoints and intermediate trial state
 reports/tuning/**/search/
+
+# Local MLflow tracking data
+mlruns/
