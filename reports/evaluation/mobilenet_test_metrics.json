@@ -1,0 +1,22 @@
+{
+  "threshold": 0.6539469957351685,
+  "accuracy": 0.7346938775510204,
+  "balanced_accuracy": 0.7452300785634118,
+  "precision_ai": 0.8387096774193549,
+  "recall_ai": 0.6419753086419753,
+  "f1_ai": 0.7272727272727273,
+  "roc_auc": 0.8204264870931538,
+  "confusion_matrix_rows_true_cols_pred": [
+    [
+      56,
+      10
+    ],
+    [
+      29,
+      52
+    ]
+  ],
+  "model_sha256": "58f49553f6cbfb2cea026ca23df86fa4b39bd057c090d5fbc261da80c3f4e497",
+  "test_count": 147,
+  "evaluated_utc": "2026-11-08T17:04:13.943048+00:00"
+}

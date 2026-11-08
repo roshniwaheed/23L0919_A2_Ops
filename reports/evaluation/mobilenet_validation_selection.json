@@ -1,0 +1,46 @@
+{
+  "selection_rule": "maximize validation macro F1; tie break balanced accuracy, then proximity to 0.5",
+  "model_path": "models/mobilenet_best.keras",
+  "model_sha256": "58f49553f6cbfb2cea026ca23df86fa4b39bd057c090d5fbc261da80c3f4e497",
+  "validation_count": 146,
+  "validation_macro_f1": 0.746277769949744,
+  "validation_metrics": {
+    "threshold": 0.6539469957351685,
+    "accuracy": 0.7465753424657534,
+    "balanced_accuracy": 0.7594491927825261,
+    "precision_ai": 0.8666666666666667,
+    "recall_ai": 0.6419753086419753,
+    "f1_ai": 0.7375886524822695,
+    "roc_auc": 0.8161443494776828,
+    "confusion_matrix_rows_true_cols_pred": [
+      [
+        57,
+        8
+      ],
+      [
+        29,
+        52
+      ]
+    ]
+  },
+  "validation_default_0_5_metrics": {
+    "threshold": 0.5,
+    "accuracy": 0.6917808219178082,
+    "balanced_accuracy": 0.6887939221272554,
+    "precision_ai": 0.725,
+    "recall_ai": 0.7160493827160493,
+    "f1_ai": 0.7204968944099379,
+    "roc_auc": 0.8161443494776828,
+    "confusion_matrix_rows_true_cols_pred": [
+      [
+        43,
+        22
+      ],
+      [
+        23,
+        58
+      ]
+    ]
+  },
+  "created_utc": "2026-11-08T17:02:55.713471+00:00"
+}

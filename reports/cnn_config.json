@@ -1,0 +1,21 @@
+{
+    "model": "Scratch CNN",
+    "seed": 42,
+    "epochs_max": 20,
+    "epochs_completed": 6,
+    "batch_size": 16,
+    "image_size": [
+        224,
+        224
+    ],
+    "learning_rate": 0.001,
+    "optimizer": "Adam",
+    "loss": "binary_crossentropy",
+    "augmentation": [
+        "horizontal_flip",
+        "rotation",
+        "zoom"
+    ],
+    "normalization": "[0,1]",
+    "parameters": 102465
+}

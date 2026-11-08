@@ -1,0 +1,47 @@
+
+=================================================================
+Phase 1 - Frozen backbone
+=================================================================
+
+Trainable backbone layers:
+input_layer | InputLayer
+
+Trainable classification-head layers:
+dense | Dense
+prediction | Dense
+
+Trainable backbone layer count: 1
+Trainable parameters: 164,097
+
+=================================================================
+Phase 2 - Fine-tuning
+=================================================================
+
+Trainable backbone layers:
+input_layer | InputLayer
+block_14_expand | Conv2D
+block_14_expand_relu | ReLU
+block_14_depthwise | DepthwiseConv2D
+block_14_depthwise_relu | ReLU
+block_14_project | Conv2D
+block_14_add | Add
+block_15_expand | Conv2D
+block_15_expand_relu | ReLU
+block_15_depthwise | DepthwiseConv2D
+block_15_depthwise_relu | ReLU
+block_15_project | Conv2D
+block_15_add | Add
+block_16_expand | Conv2D
+block_16_expand_relu | ReLU
+block_16_depthwise | DepthwiseConv2D
+block_16_depthwise_relu | ReLU
+block_16_project | Conv2D
+Conv_1 | Conv2D
+out_relu | ReLU
+
+Trainable classification-head layers:
+dense | Dense
+prediction | Dense
+
+Trainable backbone layer count: 20
+Trainable parameters: 1,674,817
