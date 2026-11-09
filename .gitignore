@@ -28,3 +28,9 @@ mlruns/
 
 # Task 3.5 generated checkpoints
 reports/mlflow_six/models/
+
+# Local SQLite database
+visionguard.db
+visionguard.db-journal
+visionguard.db-wal
+visionguard.db-shm

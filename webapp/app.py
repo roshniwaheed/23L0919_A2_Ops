@@ -18,6 +18,11 @@ load_dotenv(ROOT / ".env")
 
 # Inference module loads the champion model once.
 from webapp.inference import predict_image, MODEL_VERSION
+from webapp.database import (
+    init_db,
+    save_prediction,
+    get_prediction_history
+)
 
 # --------------------------------------------------
 # 2. Initialize Flask application
@@ -53,6 +58,8 @@ app.config["DEBUG"] = False
 
 ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp"}
 
+# Create the database and table at application startup.
+init_db()
 # --------------------------------------------------
 # 3. Helper function for friendly error pages
 # --------------------------------------------------
@@ -142,6 +149,11 @@ def predict():
     # Run inference using the already-loaded model.
     result = predict_image(image_bytes)
 
+    # Save the prediction to the database.
+    record_id = save_prediction(filename, result)
+
+    print(f"Prediction saved to database. Record ID: {record_id}")
+
     # Display prediction result.
     return render_template(
         "result.html",
@@ -150,18 +162,19 @@ def predict():
     )
 
 
+
 # --------------------------------------------------
 # 6. Prediction history page
 # --------------------------------------------------
 
 @app.get("/history")
 def history():
+    records = get_prediction_history()
 
-    # Database-backed history will be implemented
-    # in Task 5.
-
-    return render_template("history.html")
-
+    return render_template(
+        "history.html",
+        records=records
+    )
 
 # --------------------------------------------------
 # 7. Health-check endpoint
