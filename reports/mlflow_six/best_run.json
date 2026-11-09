@@ -1,0 +1,15 @@
+{
+  "experiment": "E2",
+  "run_id": "f545ad03c80144a1a60421ac8679921e",
+  "learning_rate": 0.0003,
+  "dropout": 0.3,
+  "unfrozen_layers": 0,
+  "best_epoch": 3,
+  "best_val_auc": 0.7854700684547424,
+  "best_val_accuracy": 0.6575342416763306,
+  "best_val_loss": 0.561026930809021,
+  "final_val_auc": 0.7854700684547424,
+  "final_val_accuracy": 0.6575342416763306,
+  "final_val_loss": 0.561026930809021,
+  "model_path": "E:\\sem7\\23L0919_A2_Ops\\reports\\mlflow_six\\models\\E2.keras"
+}

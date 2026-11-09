@@ -25,3 +25,6 @@ reports/tuning/**/search/
 
 # Local MLflow tracking data
 mlruns/
+
+# Task 3.5 generated checkpoints
+reports/mlflow_six/models/
