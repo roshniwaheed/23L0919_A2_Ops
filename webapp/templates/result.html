@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Analysis Result | VisionGuard{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div class="eyebrow">ANALYSIS COMPLETE</div>
+    <h1>Image Analysis <span>Result</span></h1>
+    <p>VisionGuard has finished processing your image.</p>
+</section>
+
+<section class="result-card">
+
+    <div class="result-top">
+        <div>
+            <p class="muted">Analyzed file</p>
+            <h3 class="filename">{{ filename }}</h3>
+        </div>
+
+        <span class="model-badge">
+            Model v{{ result.model_version }}
+        </span>
+    </div>
+
+    <div class="verdict-section">
+        <p class="muted">CLASSIFICATION RESULT</p>
+
+        <div class="verdict
+            {% if result.label == 'AI-generated' %}ai-verdict
+            {% else %}real-verdict{% endif %}">
+            {{ result.label }}
+        </div>
+
+        <p class="verdict-description">
+            The model classified this image as
+            <strong>{{ result.label }}</strong>.
+        </p>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span>Model score for predicted class</span>
+            <strong>{{ result.confidence }}%</strong>
+        </div>
+
+        <div class="metric-card">
+            <span>AI probability</span>
+            <strong>{{ result.ai_probability }}%</strong>
+        </div>
+    </div>
+
+    <div class="confidence-section">
+        <div class="progress-label">
+            <span>AI probability score</span>
+            <span>{{ result.ai_probability }}%</span>
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-fill"
+                 style="width: {{ result.ai_probability }}%;">
+            </div>
+        </div>
+    </div>
+
+    <div class="caveat">
+        <strong>Important limitation</strong>
+        <p>{{ result.caveat }}</p>
+    </div>
+
+    <a href="{{ url_for('upload') }}"
+       class="primary-btn link-btn">
+        Analyze Another Image →
+    </a>
+
+</section>
+
+{% endblock %}

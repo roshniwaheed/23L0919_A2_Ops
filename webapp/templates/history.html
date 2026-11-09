@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+{% block title %}Prediction History | VisionGuard{% endblock %}
+
+{% block content %}
+
+<section class="page-heading">
+    <div class="eyebrow">ANALYSIS RECORDS</div>
+    <h1>Prediction <span>History</span></h1>
+    <p>Review previously analyzed images.</p>
+</section>
+
+<section class="history-card">
+
+    {% if records is defined and records %}
+
+    <div class="table-wrapper">
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Prediction</th>
+                    <th>Score</th>
+                    <th>Model</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.filename }}</td>
+                    <td>{{ record.label }}</td>
+                    <td>{{ record.confidence }}%</td>
+                    <td>v{{ record.model_version }}</td>
+                    <td>{{ record.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+        <div class="empty-icon">◷</div>
+        <h2>No saved predictions yet</h2>
+        <p>
+            Prediction history will appear here
+            once database logging is enabled in Task 5.
+        </p>
+
+        <a href="{{ url_for('upload') }}"
+           class="secondary-btn">
+            Analyze an Image
+        </a>
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

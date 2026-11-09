@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}VisionGuard{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="{{ url_for('upload') }}" class="brand">
+            <span class="brand-icon">◈</span>
+            Vision<span>Guard</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="{{ url_for('upload') }}"
+               class="{% if request.endpoint == 'upload' %}active{% endif %}">
+                Analyze
+            </a>
+
+            <a href="{{ url_for('history') }}"
+               class="{% if request.endpoint == 'history' %}active{% endif %}">
+                History
+            </a>
+        </nav>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            Model Ready
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <span>VisionGuard — AI Image Detection</span>
+        <span>Predictions are estimates, not proof of origin.</span>
+    </footer>
+
+</body>
+</html>

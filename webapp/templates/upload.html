@@ -1,0 +1,88 @@
+
+{% extends "base.html" %}
+
+{% block title %}Analyze Image | VisionGuard{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="eyebrow">IMAGE AUTHENTICITY ANALYSIS</div>
+
+    <h1>Is it real, or <span>AI-generated?</span></h1>
+
+    <p>
+        Upload an image and let VisionGuard analyze
+        its visual patterns using a trained
+        MobileNetV2 classification model.
+    </p>
+</section>
+
+<section class="upload-card">
+
+    <div class="card-heading">
+        <h2>Analyze an Image</h2>
+        <p>Select an image to begin classification.</p>
+    </div>
+
+    <form action="{{ url_for('predict') }}"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <label for="image" class="upload-zone">
+            <span class="upload-symbol">↑</span>
+            <strong>Choose an image to upload</strong>
+            <span>JPG, JPEG, PNG or WEBP</span>
+            <span class="file-limit">Maximum size: 5 MB</span>
+
+            <input type="file"
+                   id="image"
+                   name="image"
+                   accept=".jpg,.jpeg,.png,.webp"
+                   required
+                   onchange="showFileName(this)">
+        </label>
+
+        <p id="selected-file" class="selected-file">
+            No file selected
+        </p>
+
+        <button type="submit" class="primary-btn">
+            Analyze Image →
+        </button>
+
+    </form>
+</section>
+
+<section class="info-grid">
+    <div class="info-card">
+        <span class="info-icon">01</span>
+        <h3>Upload</h3>
+        <p>Choose an image from your device.</p>
+    </div>
+
+    <div class="info-card">
+        <span class="info-icon">02</span>
+        <h3>Analyze</h3>
+        <p>Our model evaluates visual features.</p>
+    </div>
+
+    <div class="info-card">
+        <span class="info-icon">03</span>
+        <h3>Review</h3>
+        <p>Receive a prediction and model score.</p>
+    </div>
+</section>
+
+<script>
+function showFileName(input) {
+    const label = document.getElementById("selected-file");
+
+    if (input.files.length > 0) {
+        label.textContent = "Selected: " + input.files[0].name;
+    } else {
+        label.textContent = "No file selected";
+    }
+}
+</script>
+
+{% endblock %}
