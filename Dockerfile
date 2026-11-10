@@ -22,7 +22,13 @@ WORKDIR /app
 #    This allows Docker to reuse the dependency layer.
 COPY requirements-docker.txt .
 
-RUN pip install --no-cache-dir -r requirements-docker.txt
+
+RUN pip install --no-cache-dir -r requirements-docker.txt \
+    && find /usr/local/lib/python3.11/site-packages \
+        -type d -name '__pycache__' -prune -exec rm -rf {} + \
+    && find /usr/local/lib/python3.11/site-packages \
+        -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+
 
 # 5. Copy the application and champion model
 COPY webapp/ ./webapp/
