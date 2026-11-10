@@ -17,8 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env")
 
 # Inference module loads the champion model once.
-from webapp.inference import predict_image, MODEL_VERSION
-from webapp.database import (
+from webapp.inference import predict_image, MODEL_VERSION  # noqa: E402
+from webapp.database import (  # noqa: E402
     init_db,
     save_prediction,
     get_prediction_history

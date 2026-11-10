@@ -34,3 +34,5 @@ visionguard.db
 visionguard.db-journal
 visionguard.db-wal
 visionguard.db-shm
+
+.dvc/config.local

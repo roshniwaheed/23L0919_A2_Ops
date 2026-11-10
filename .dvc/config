@@ -2,3 +2,7 @@
     remote = localstorage
 ['remote "localstorage"']
     url = E:\sem7\visionguard_dvc_remote
+['remote "dagshub"']
+    url = https://dagshub.com/roshniwaheed/23L0919_A2_Ops.dvc
+    auth = basic
+    user = roshniwaheed
