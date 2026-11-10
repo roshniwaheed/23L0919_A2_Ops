@@ -1,0 +1,64 @@
+
+services:
+
+  # ----------------------------------------
+  # Flask + TensorFlow application
+  # ----------------------------------------
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: visionguard-web:1.1
+
+    ports:
+      - "127.0.0.1:5002:5001"
+
+    environment:
+      FLASK_HOST: "0.0.0.0"
+      FLASK_PORT: "5001"
+      FLASK_DEBUG: "false"
+
+      VISIONGUARD_MODEL_PATH: "models/mobilenet_best.keras"
+      VISIONGUARD_THRESHOLD: "${VISIONGUARD_THRESHOLD}"
+      VISIONGUARD_MODEL_VERSION: "${VISIONGUARD_MODEL_VERSION}"
+      VISIONGUARD_MAX_UPLOAD_MB: "5"
+
+      DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+  # ----------------------------------------
+  # PostgreSQL database
+  # ----------------------------------------
+  db:
+    image: postgres:16-alpine
+
+    environment:
+      POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"'
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+    restart: unless-stopped
+
+# ----------------------------------------
+# Persistent database storage
+# ----------------------------------------
+volumes:
+  postgres_data:
