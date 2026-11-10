@@ -1,0 +1,40 @@
+
+# Git and local environments
+.git
+.venv
+venv
+__pycache__
+**/__pycache__
+*.pyc
+.pytest_cache
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Training data and artifacts
+data/
+reports/
+training/
+mlruns/
+mlartifacts/
+.dvc/
+.dvcignore
+*.dvc
+
+# Local databases
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Documentation and notebooks
+*.ipynb
+*.pdf
+*.pptx
+*.docx
+
+# Keep only the champion model in the build context
+models/*
+!models/mobilenet_best.keras
