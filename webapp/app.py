@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env")
 
 # Inference module loads the champion model once.
-from webapp.inference import predict_image, MODEL_VERSION  # noqa: E402
+from webapp.cloud_client import predict_cloud, MODEL_VERSION
 from webapp.database import (  # noqa: E402
     init_db,
     save_prediction,
@@ -146,8 +146,17 @@ def predict():
             "This file is not a valid or readable image."
         )
 
-    # Run inference using the already-loaded model.
-    result = predict_image(image_bytes)
+    # Send the image to the AWS cloud inference API.
+    try:
+        result = predict_cloud(image_bytes, filename=filename)
+
+    except RuntimeError as exc:
+        app.logger.error("Cloud inference failed: %s", exc)
+
+        return render_error(
+            "Cloud prediction is currently unavailable. Please try again.",
+            502
+        )
 
     # Save the prediction to the database.
     record_id = save_prediction(filename, result)
@@ -182,16 +191,16 @@ def history():
 
 @app.get("/health")
 def health():
-
+    
     return {
         "status": "healthy",
-        "model_loaded": True,
+        "inference_mode": "cloud",
         "model_version": MODEL_VERSION,
-        "model_path_configured": bool(
-            app.config["MODEL_PATH"]
+        "cloud_api_configured": bool(
+            os.getenv("VISIONGUARD_CLOUD_URL")
         ),
-        "threshold_configured": (
-            0 <= app.config["MODEL_THRESHOLD"] <= 1
+        "api_key_configured": bool(
+            os.getenv("VISIONGUARD_API_KEY")
         ),
         "database_configured": bool(
             app.config["DATABASE_URL"]

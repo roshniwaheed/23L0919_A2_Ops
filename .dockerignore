@@ -38,3 +38,7 @@ mlartifacts/
 # Keep only the champion model in the build context
 models/*
 !models/mobilenet_best.keras
+
+# Keep
+!models/
+!models/mobilenet_best.tflite
